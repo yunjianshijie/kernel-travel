@@ -8,7 +8,7 @@
 
 #include <asm/numa.h>
 
-struct kmem_cache {
+struct kmem_cachestruct kmem_cache {
     
     size_t object_size;
 
@@ -19,6 +19,10 @@ struct kmem_cache {
     struct list_head slabs_partial;
     struct list_head slabs_full;
 
+    unsigned long free_objects;
+    unsigned int free_limit;
+    /*slab着色 */
+    unsigned int colour_next; 
     // struct kmem_cache_node *node[MAX_NUMNODES];
 
 };
@@ -32,12 +36,26 @@ struct slab {
 	void *s_mem;	/* first object */
 
     int inuse; /*使用计数*/
+
+    struct page * 
 };
 
+
+struct array_cache {
+    unsigned int avail;
+    unsigned int limit;
+    unsigned int batchcount;
+    unsigned int touched;
+    // spinlock_t lock;
+    void *entry[];
+};
 
 
 void *kmem_cache_alloc(struct kmem_cache *cachep, gfp_t flags);
 void kmem_cache_free(struct kmem_cache *s, void *objp);
-
+struct kmem_cache *kmem_cache_create(const char *name, unsigned int size,
+			unsigned int align, slab_flags_t flags,
+			void (*ctor)(void *));
+void __init kmem_cache_init(void);
 
 #endif

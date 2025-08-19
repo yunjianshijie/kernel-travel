@@ -82,6 +82,7 @@ typedef struct {
 #endif
 
 typedef unsigned int __bitwise gfp_t;
+typedef unsigned int __bitwise slab_flags_t;
 
 /* The kernel doesn't use this legacy form, but user space does */
 #define __bitwise__ __bitwise
