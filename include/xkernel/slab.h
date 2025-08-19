@@ -50,6 +50,11 @@ struct array_cache {
     void *entry[];
 };
 
+// extern struct lock slab_lock;
+
+
+
+
 
 void *kmem_cache_alloc(struct kmem_cache *cachep, gfp_t flags);
 void kmem_cache_free(struct kmem_cache *s, void *objp);
