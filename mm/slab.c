@@ -11,13 +11,13 @@ struct kmem_cache *kmem_cache_create(const char *name, unsigned int size,
     struct kmem_cache *s = NULL;
              
     // 加锁
-    
+    lock_acquire(slab_lock)
 
     //
 
 
     // 关锁
-
+    lock_release(slab_lock)
     return NULL;
 }
 

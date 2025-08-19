@@ -50,7 +50,7 @@ struct array_cache {
     void *entry[];
 };
 
-// extern struct lock slab_lock;
+ extern struct lock slab_lock;
 
 
 
