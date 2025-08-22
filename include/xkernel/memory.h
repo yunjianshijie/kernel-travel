@@ -130,7 +130,11 @@ struct page {
 	// struct list_head lru;		/* Pageout list, eg. active_list
 	// 				 * protected by zone->lru_lock !
 	// 				 */
+	union {
 	struct list_head buddy_list;
+	
+	struct list_head lru;
+	};
 	char __padding[8]; 
 };
 
